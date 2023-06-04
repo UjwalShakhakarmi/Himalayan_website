@@ -64,6 +64,7 @@ class HomeController extends Controller
 
     public function AdminPage()
     {
+    
         return view('AdminPanel.AdminHome');
     }
     
