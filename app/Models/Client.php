@@ -9,7 +9,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 class Client extends Model implements Authenticatable
 {
     use HasFactory;
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password','role'];
     
 
     public function getAuthIdentifierName()

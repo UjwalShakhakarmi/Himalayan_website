@@ -415,21 +415,7 @@ nav{
 /*--------------------------------------------------------------
 # Header Nav
 --------------------------------------------------------------*/
-.header-nav ul {
-  list-style: none;
-}
 
-.header-nav>ul {
-  margin: 0;
-  padding: 0;
-}
-
-.header-nav .nav-icon {
-  font-size: 22px;
-  color: #012970;
-  margin-right: 25px;
-  position: relative;
-}
 
 
 

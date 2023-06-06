@@ -20,6 +20,7 @@ class ClientController extends Controller
         Client::Create([
             'name' => $req->name,
             'email' => $req->email,
+            'role' => 'client',
             'password' => Hash::make($req->password)
         ]);
        
@@ -28,35 +29,40 @@ class ClientController extends Controller
     }
     public function login(Request $req)
     {
-     
+        $alluser = Client::where('email','=',$req->email)->first();
+        
+        if($alluser)
+        {
 
-        $client = Client::where('email','=',$req->email)->first();
-        $admin = Admin::where('email', '=', $req->email)->first();
-
-        if($client){
-            if(Auth::attempt($req->only('email','password'))){
-                session()->put('CloginId',$client->id);
-                return redirect()-> route('home');
+    
+        if($alluser->role == 'admin'){
+            if(empty($alluser->password))
+            {
+                $alluser->password = Hash::make('root123');
+                $alluser->save();
+            }
+           
+            if(Hash::check($req->password,$alluser->password)){
+                session()->put('AloginId',$alluser->id);
+                return redirect()->route('Admin_Dashboard');
             }else {
                 return back()->with('Fail','Password not Matched');
             }
         }
-        if(empty($admin)){
-            $admin = new Admin();
-            $admin->email = "Ujwal@gmail.com";
-            $admin->password = Hash::make('ujwal');
-            $admin->save();
-        }elseif($admin)
-        {
-            if(Auth::attempt($req->only('email','password'))){
-            
-                return redirect()->route('Admin_Dashboard');
-            }
+        elseif($alluser->role == 'client'){
+           if(Hash::check($req->password,$alluser->password))
+           {
+                session()->put('CloginId',$alluser->id);
+                return redirect()->route('home');
+           }else{
+                return back()->with('Fail','Unable to SignUp');
+
+           }
         }
-        
-        else{
-            return back()->with('Fail','Unable to SignUp');
-        }
+    }else{
+        return back()->with('fail','Email is not registered');
+    }
+
         
     }
     public function ProfileLogo(Request $req){

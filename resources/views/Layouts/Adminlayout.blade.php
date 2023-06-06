@@ -30,17 +30,29 @@
 <body>
 
  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-      <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand">Navbar</a>
-        <div class="profile_pic">
-            <span>Ujwal</span>
-            <img src="{{ asset('default/default.png') }}" alt="profile">
-        </div>
+ <header id="header" class="header fixed-top d-flex align-items-center">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Navbar</a>
+      <div class="profile_pic">
+        <img src="{{ asset('default/default.png') }}">
+          <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+          id="click-signup-dropdown" style="background-color: transparent; color: black;">
+           <strong style="padding-top: 16px; padding-right: 5px;">Ujwal Shakhakarmi</strong>
+
+        </a>
+
+        <ul class="dropdown-menu" id="drop-menu" style="width: 12rem;">
+          <li><i class="uil uil-user"></i><a class="dropdown-item" href="">Profile</a></li>
+          <hr class="mb-2">
+          <li><i class="uil uil-signout"></i><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
+        </ul>
+
       </div>
-    </nav>
-  </header><!-- End Header -->
+    </div>
+  </nav>
+</header>
+
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">

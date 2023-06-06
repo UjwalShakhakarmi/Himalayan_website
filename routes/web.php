@@ -41,3 +41,7 @@ Route::get('/edit/{id}',[ProductController::class, 'editProduct']);
 Route::post('/EditProduct',[ProductController::class, 'ProductUpdate'])->name('Edit_Product');
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -81,7 +81,7 @@
                 <a class="nav-link" href="{{ route('ContactUs') }}">Contact Us</a>
               </li>
             </ul>
-           @auth
+           @if(session()->has('CloginId'))
                     <div class="profile" style="margin: auto;">
                         @if ($data->ProfileImg === 'default.png')
                             <img src="{{ asset('default/default.png') }}" alt="404 not found">
@@ -104,13 +104,13 @@
                             </ul>
                         </div>
                     </div>
-                    @endauth
-@guest            
+           @else
+                    
             <div class="butn" style="margin:auto;margin-top: 8px;">
                         <a href="{{ route('loginPage') }}" id="login" class="login btn border border-light-subtle">Login</a>
                         <a href="{{ route('signUp') }}" id="signUp" class="signUp btn border border-danger-subtle">SignUp</a>
             </div>
-            @endguest
+            @endif
 
           </div>
         </div>
